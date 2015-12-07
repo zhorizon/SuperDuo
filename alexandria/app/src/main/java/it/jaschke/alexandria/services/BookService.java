@@ -178,6 +178,12 @@ public class BookService extends IntentService {
         final String IMG_URL_PATH = "imageLinks";
         final String IMG_URL = "thumbnail";
 
+        //  validation input jsonString first
+        if (jsonString == null || jsonString.length() == 0) {
+            sendFetchStatus(FETCH_STATUS_SERVER_DOWN);
+            return;
+        }
+
         try {
             JSONObject bookJson = new JSONObject(jsonString);
             JSONArray bookArray;
